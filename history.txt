@@ -1,0 +1,51 @@
+1.0   - 20090618
+
+- Initial release
+
+1.0.1 - 20090619
+
+- Increased max game length from 100 to 1600 moves
+
+1.1   - 20090705
+
+- Removed mg/eg pst interpolation
+- Added passed pawn scoring
+- Added check extension
+- Added a transposition table
+- Added hash move in move ordering
+- Added killer moves in move ordering
+- Added repetition detection
+- Added null move
+
+1.2   - 20090806
+
+- Fixed a null move bug
+- Fixed a killer moves bug
+- Fixed an ep hash bug
+- Added lmr
+- Added fail soft
+- Bound-independent lazy eval
+- Bad captures: delayed in full-width search, pruned in quiescence
+
+1.3   - 20100213
+
+- Fixed a bug in TransRetrieve(): score wasn't being adjusted before checking
+  for cutoff
+- Removed lmr for now (too many inaccuracies)
+- Null move: changed R from 3 to 2
+- Full pv to the tip by not allowing cutoffs from exact scores inside the window
+- Code cleanup
+- Real time instead of CPU time
+- Best move returned from last iteration, even if incomplete, since best move
+  from previous iteration is tried first
+- Pv displayed as soon as best move changes, not at the end of the iteration
+- 4-way associative transposition table
+- Added isolated pawns and tuned passed pawns
+
+1.4   - 20100630
+
+- Fixed a bug in Swap()
+- Added pvs
+- Changed some null move conditions
+- TransStore(): always replace when there is a hit, regardless of depth
+- Mate scores are now displayed correctly
