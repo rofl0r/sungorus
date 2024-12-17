@@ -7,6 +7,10 @@
 #endif
 #include "sungorus.h"
 
+#if defined(__GNUC__) && defined(HAVE_POPCNT)
+#  include <nmmintrin.h> // Intel and Microsoft header for _mm_popcnt_u64()
+#endif
+
 int InputAvailable(void)
 {
 #if defined(_WIN32) || defined(_WIN64)
@@ -83,6 +87,9 @@ U64 Key(POS *p)
 
 int PopCnt(U64 bb)
 {
+#if defined(__GNUC__) && defined(HAVE_POPCNT)
+  return _mm_popcnt_u64(bb);
+#else
   U64 k1 = (U64)0x5555555555555555;
   U64 k2 = (U64)0x3333333333333333;
   U64 k3 = (U64)0x0F0F0F0F0F0F0F0F;
@@ -92,6 +99,7 @@ int PopCnt(U64 bb)
   bb = (bb & k2) + ((bb >> 2) & k2);
   bb = (bb + (bb >> 4)) & k3;
   return (bb * k4) >> 56;
+#endif
 }
 
 void MoveToStr(int move, char *move_str)
