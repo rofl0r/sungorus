@@ -4,12 +4,13 @@
 
 void Think(POS *p, int *pv)
 {
+  int max = max_depth ? max_depth+1 : 256;
   ClearHist();
   tt_date = (tt_date + 1) & 255;
   nodes = 0;
   abort_search = 0;
   start_time = GetMS();
-  for (root_depth = 1; root_depth < 256; root_depth++) {
+  for (root_depth = 1; root_depth < max; root_depth++) {
     printf("info depth %d\n", root_depth);
     Search(p, 0, -INF, INF, root_depth, pv);
     if (abort_search)

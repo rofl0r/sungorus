@@ -129,6 +129,7 @@ void ParseGo(POS *p, char *ptr)
   btime = -1;
   winc = 0;
   binc = 0;
+  max_depth = 0;
   movestogo = 40;
   for (;;) {
     ptr = ParseToken(ptr, token);
@@ -151,6 +152,9 @@ void ParseGo(POS *p, char *ptr)
     } else if (strcmp(token, "movestogo") == 0) {
       ptr = ParseToken(ptr, token);
       movestogo = atoi(token);
+    } else if (strcmp(token, "depth") == 0) {
+      ptr = ParseToken(ptr, token);
+      max_depth = atoi(token);
     }
   }
   time = p->side == WC ? wtime : btime;

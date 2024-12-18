@@ -223,6 +223,7 @@ extern U64 zob_piece[12][64];
 extern U64 zob_castle[16];
 extern U64 zob_ep[8];
 extern int move_time;
+extern int max_depth;
 extern int pondering;
 extern int root_depth;
 extern int nodes;
