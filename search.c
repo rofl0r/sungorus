@@ -11,7 +11,6 @@ void Think(POS *p, int *pv)
   abort_search = 0;
   start_time = GetMS();
   for (root_depth = 1; root_depth < max; root_depth++) {
-    printf("info depth %d\n", root_depth);
     Search(p, 0, -INF, INF, root_depth, pv);
     if (abort_search)
       break;
